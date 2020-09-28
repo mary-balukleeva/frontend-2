@@ -1,0 +1,22 @@
+.Cities {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: gray;
+  }
+
+  .city {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    margin-right: 20px;
+  }
+}

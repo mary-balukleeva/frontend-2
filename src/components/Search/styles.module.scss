@@ -1,0 +1,11 @@
+.Search {
+  .searchInput {
+    min-width: 300px;
+    min-height: 30px;
+  }
+
+  .autocompleteDropdownContainer {
+    position: absolute;
+    z-index: 10;
+  }
+}

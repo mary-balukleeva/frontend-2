@@ -1,0 +1,23 @@
+.Header {
+  height: 80px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  color: gray;
+
+  .dates {
+    display: flex;
+
+    .link {
+      margin-right: 20px;
+      text-decoration: unset;
+      color: gray;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.DayInfo {
+  color: gray;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  .infoBlock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+
+    .day {
+      text-transform: capitalize;
+    }
+  }
+
+  .table {
+    border-collapse: collapse;
+    margin-top: 10px;
+
+    .row {
+      .cell {
+        padding: 10px;
+      }
+
+      td.cell {
+
+      }
+
+      th.cell {
+        border-bottom: 1px solid gray;
+      }
+    }
+  }
+
+  .mapBlock {
+    flex: 2;
+    width: 100%;
+    height: 300px;
+  }
+}

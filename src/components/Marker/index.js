@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 const Marker = ({ city, weather, loadCurrentWeather }) => {
     const [showTooltip, setShowTooltip] = useState(false)
 
-    const handleClick = () => setShowTooltip(true)
+    const handleClick = () => setShowTooltip(!showTooltip)
 
     const { currentWeather } = weather
 

@@ -10,7 +10,7 @@ export const detectUserCity = () => (dispatch, getState, api) => {
         .then((response) => {
             dispatch({
                 type: Types.SUCCESSFULLY_LOAD_USER_CITY,
-                payload: response,
+                payload: response.results[0],
             })
         })
         .catch((err) => {

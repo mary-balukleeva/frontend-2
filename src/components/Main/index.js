@@ -14,14 +14,14 @@ const Main = ({ user, weatherData, loadWeather, detectUserCity }) => {
 
     useEffect(() => {
         if (city) {
-            loadWeather(`${city.city},${city.countryCode}`)
+            loadWeather(`${city.components.city}`)
         }
     }, [loadWeather, city])
 
     return (
         <Layout
             weatherData={weatherData.weather}
-            location={`${city?.city}, ${city?.countryCode}`}
+            location={city ? `${city.components.city}, ${city.components.country_code.toUpperCase()}` : 'Location not detected'}
         >
             <Cities />
         </Layout>
@@ -30,12 +30,12 @@ const Main = ({ user, weatherData, loadWeather, detectUserCity }) => {
 
 const mapStateToProps = (state) => ({
     user: state.user,
-    weatherData: state.weather,
+    weatherData: state.weather
 })
 
 const mapDispatchToProps = (dispatch) => ({
     detectUserCity: () => dispatch(detectUserCity()),
-    loadWeather: (params) => dispatch(loadWeather(params)),
+    loadWeather: (params) => dispatch(loadWeather(params))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import { addCity } from '../../redux/cities/actions'
 import { connect } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
-const WeatherInfo = ({ location, weatherData, weatherState, addCity }) => {
+const WeatherInfo = ({ handleClickRef, location, weatherData, weatherState, addCity }) => {
     const [weather, setWeather] = useState(weatherData)
     const [isAdded, setIsAdded] = useState(false)
+
+    const { pathname } = useLocation()
 
     const { isLoading } = weatherState
 
@@ -25,7 +28,11 @@ const WeatherInfo = ({ location, weatherData, weatherState, addCity }) => {
         <div className={styles.WeatherInfo}>
             {isLoading && <h1>Loading...</h1>}
 
-            {!isLoading && !weather && <h1>No data found</h1>}
+            {!isLoading && !weather && <>
+                <h2>{pathname === '/' ? 'Please allow app to know your geolocation ' : 'You have not selected city'}</h2>
+                {pathname !== '/' &&
+                <button className={styles.selectButton} onClick={handleClickRef}>Select city</button>}
+            </>}
 
             {!isLoading && weather && (
                 <>
@@ -49,11 +56,11 @@ const WeatherInfo = ({ location, weatherData, weatherState, addCity }) => {
 }
 
 const mapStateToProps = (state) => ({
-    weatherState: state.weather,
+    weatherState: state.weather
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addCity: () => dispatch(addCity()),
+    addCity: () => dispatch(addCity())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherInfo)

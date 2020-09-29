@@ -4,13 +4,17 @@ import Layout from '../Layout'
 import { detectUserCity } from '../../redux/user/actions'
 import { connect } from 'react-redux'
 import { loadWeather } from '../../redux/weather/actions'
+import { usePosition } from '../../hooks/usePosition'
 
 const Main = ({ user, weatherData, loadWeather, detectUserCity }) => {
     const { city } = user
+    const { latitude, longitude } = usePosition()
 
     useEffect(() => {
-        detectUserCity()
-    }, [detectUserCity])
+        if (latitude && longitude) {
+            detectUserCity({latitude, longitude})
+        }
+    }, [latitude, longitude, detectUserCity])
 
     useEffect(() => {
         if (city) {
@@ -34,7 +38,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    detectUserCity: () => dispatch(detectUserCity()),
+    detectUserCity: (params) => dispatch(detectUserCity(params)),
     loadWeather: (params) => dispatch(loadWeather(params))
 })
 

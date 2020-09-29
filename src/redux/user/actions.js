@@ -1,12 +1,12 @@
 import * as Types from './types'
 
-export const detectUserCity = () => (dispatch, getState, api) => {
+export const detectUserCity = (coords) => (dispatch, getState, api) => {
     dispatch({
         type: Types.LOAD_USER_CITY,
     })
 
     return api.user
-        .fetchUserLocation()
+        .fetchUserLocation(coords)
         .then((response) => {
             dispatch({
                 type: Types.SUCCESSFULLY_LOAD_USER_CITY,

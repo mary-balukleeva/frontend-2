@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Search from '../Search'
 import { connect } from 'react-redux'
 
-const Header = ({ cities }) => {
+const Header = ({ cities, inputRef }) => {
     const { selectedCity } = cities
 
     return (
@@ -29,14 +29,14 @@ const Header = ({ cities }) => {
             </div>
 
             <div className='search-container'>
-                <Search />
+                <Search inputRef={inputRef} />
             </div>
         </header>
     )
 }
 
 const mapStateToProps = (state) => ({
-    cities: state.cities,
+    cities: state.cities
 })
 
 export default connect(mapStateToProps)(Header)

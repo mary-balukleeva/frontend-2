@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import { selectCity } from '../../redux/cities/actions'
 import { connect } from 'react-redux'
@@ -6,8 +6,14 @@ import { useHistory } from 'react-router-dom'
 import styles from './styles.module.scss'
 import { loadForecast } from '../../redux/weather/actions'
 
-const Search = ({ selectCity, loadForecast }) => {
+const Search = ({ inputRef, selectCity, loadForecast }) => {
     const history = useHistory()
+
+    const searchInput = useRef()
+
+    useEffect(() => {
+        inputRef.current = searchInput.current
+    }, [inputRef])
 
     const [address, setAddress] = useState('')
 
@@ -39,6 +45,7 @@ const Search = ({ selectCity, loadForecast }) => {
                             placeholder: 'Search Places ...',
                             className: styles.searchInput,
                         })}
+                        ref={searchInput}
                     />
                     <div className={styles.autocompleteDropdownContainer}>
                         {loading && <div>Loading...</div>}

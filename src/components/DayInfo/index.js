@@ -3,14 +3,9 @@ import moment from 'moment'
 import styles from './styles.module.scss'
 import GoogleMapReact from 'google-map-react'
 import { connect } from 'react-redux'
-import { detectUserCity } from '../../redux/user/actions'
 import Marker from '../Marker'
 
-const DayInfo = ({ day, forecast, city, detectUserCity }) => {
-    useEffect(() => {
-        detectUserCity()
-    }, [detectUserCity])
-
+const DayInfo = ({ day, forecast, city }) => {
     useEffect(() => {
         if (city.selectedCity && city.selectedCity.coords) {
             setCoords(city.selectedCity.coords)
@@ -18,8 +13,8 @@ const DayInfo = ({ day, forecast, city, detectUserCity }) => {
     }, [city])
 
     const [coords, setCoords] = useState({
-        lat: 0,
-        lng: 0,
+        lat: 55.75,
+        lng: 37.61,
     })
 
     let tableData = []
@@ -97,8 +92,4 @@ const mapStateToProps = (state) => ({
     city: state.cities,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    detectUserCity: () => dispatch(detectUserCity()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DayInfo)
+export default connect(mapStateToProps)(DayInfo)

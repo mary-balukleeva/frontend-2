@@ -4,9 +4,11 @@ import { addCity } from '../../redux/cities/actions'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
-const WeatherInfo = ({ handleClickRef, location, weatherData, weatherState, addCity }) => {
+const WeatherInfo = ({ handleClickRef, location, cities, weatherData, weatherState, addCity }) => {
     const [weather, setWeather] = useState(weatherData)
     const [isAdded, setIsAdded] = useState(false)
+
+    const { selectedCity } = cities
 
     const { pathname } = useLocation()
 
@@ -43,12 +45,12 @@ const WeatherInfo = ({ handleClickRef, location, weatherData, weatherState, addC
                         meter per second
                     </div>
 
-                    <button
+                    {selectedCity && <button
                         className={styles.addContainer}
                         onClick={handleClick}
                     >
                         {isAdded ? '✓' : '+'}
-                    </button>
+                    </button>}
                 </>
             )}
         </div>
@@ -56,7 +58,8 @@ const WeatherInfo = ({ handleClickRef, location, weatherData, weatherState, addC
 }
 
 const mapStateToProps = (state) => ({
-    weatherState: state.weather
+    weatherState: state.weather,
+    cities: state.cities
 })
 
 const mapDispatchToProps = (dispatch) => ({

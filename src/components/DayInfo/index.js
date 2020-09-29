@@ -77,11 +77,11 @@ const DayInfo = ({ day, forecast, city }) => {
                     center={coords}
                     defaultZoom={12}
                 >
-                    <Marker
+                    {city.selectedCity && <Marker
                         lat={coords.lat}
                         lng={coords.lng}
                         city={city.selectedCity}
-                    />
+                    />}
                 </GoogleMapReact>
             </div>
         </div>

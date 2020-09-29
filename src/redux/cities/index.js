@@ -14,9 +14,11 @@ export default function (state = initState, { type, payload }) {
             }
 
         case Types.ADD_CITY:
+            const city = state.cities.find(item => item.placeId === state.selectedCity.placeId)
+
             return {
                 ...state,
-                cities: [...state.cities, state.selectedCity],
+                cities: city ? state.cities : [...state.cities, state.selectedCity]
             }
 
         default:
